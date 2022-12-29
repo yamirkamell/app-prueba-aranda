@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { MaterialIcons  } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons'; 
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -15,8 +15,11 @@ const ContainerMain = styled.View`
 `;
 
 const ContainerHeader = styled.View`
-  width: 90%;
-  margin-top: 20px;
+  flex-direction: row;
+  align-items: center;
+  align-self: flex-start;
+  width: 80px;
+  margin: 20px;
 `;
 
 const ContainerTitle = styled.View`
@@ -26,20 +29,18 @@ const ContainerTitle = styled.View`
 
 `;
 
-const IconHeader = styled(MaterialIcons)`
-  margin-left: 10px;
+const IconHeader = styled(Ionicons)`
   margin-top: 2px;
 `;
 
 const TitleComponent = styled.Text`
-  font-size: 24px;
   color: #ed7d31;
 `;
 
 const ContainerMovie = styled.View`
   flex-direction: column; 
   background-color: #fff;
-  width: 100%;
+  width: 90%;
   border-radius: 20px;
   border-width: 1px;
   border-color: #ed7d31;
@@ -61,6 +62,7 @@ const ImageMovie = styled.Image`
   height: 180px; 
   align-self: center;
   margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
 `;
 

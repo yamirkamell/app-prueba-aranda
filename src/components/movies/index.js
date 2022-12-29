@@ -1,27 +1,84 @@
-import { useState } from 'react';
-import { View, Text } from 'react-native';
-import { Container, ContainerScrollView, ContainerHeader, ContainerTitle, IconHeader, TitleComponent, ContainerMovie } from './styled';
+import { ActivityIndicator } from 'react-native';
 import InputComponent from './components/input-component';
+import MoviesServices from '../../services/movies';
+import { 
+  Container, 
+  ContainerMain, 
+  ContainerHeader, 
+  ContainerTitle, 
+  ContainerMovie, 
+  IconHeader, 
+  TitleComponent, 
+  FlatListContent, 
+  TitleMovie, 
+  ImageMovie 
+} from './styled';
+import { MaterialIcons } from '@expo/vector-icons';
 
-const Movies = () => {
-  const [search, setSearch] = useState('');
+const Movies = ({navigation}) => {
+  const {
+    search,
+    setSearch,
+    movies,
+    moviesFilter,
+    loading,
+    LoadMoreItems
+  } = MoviesServices();
+
+  const onPressMovieDetail = (item) => {
+    navigation.navigate("MovieDetail", {data:item});
+  }
+
+  const renderItem = ({item}) => {
+    return (
+      <ContainerMovie>
+        <TitleMovie>{item.title}</TitleMovie>
+        <ImageMovie
+        source={{uri: item.image}}
+        onClick={() => {onPressMovieDetail(item)}} />
+      </ContainerMovie>
+    )
+  }
+
+  const renderLoader = () => {
+    return (
+      <View>
+        <ActivityIndicator size="large" color="#ed7d31" />
+      </View>
+    )
+  }
 
   return (
     <Container>
-      <ContainerScrollView contentContainerStyle={{alignItems: 'center'}} >
+      {loading ? <ActivityIndicator size="large" color="#ed7d31" />
+      :
+      <ContainerMain>
         <ContainerHeader>
           <InputComponent placeholder='Search' search={search} setSearch={setSearch}/>
-          <ContainerTitle>
-            <TitleComponent>Tendencias</TitleComponent>
-            <IconHeader name="stars" size={25} color="#ed7d31" />
-          </ContainerTitle>
+          {movies.length !== 0 ? 
+            <ContainerTitle>
+              <TitleComponent>Tendencias</TitleComponent>
+              <IconHeader name="stars" size={25} color="#ed7d31" />
+            </ContainerTitle>
+          : null
+          }
         </ContainerHeader>
-          <ContainerMovie> 
-            <View>
-              <Text>{"Welcome"}</Text>
-            </View>
-          </ContainerMovie>
-      </ContainerScrollView>
+          {movies.length === 0 && moviesFilter.length === 0 ? 
+            <ContainerTitle>
+              <MaterialIcons name="sms-failed" size={24} color="#ed7d31" />
+              <TitleComponent>No hay resultados!</TitleComponent>
+            </ContainerTitle>
+          : null
+          }
+          <FlatListContent 
+            data={search.length < 3 ? movies : moviesFilter} 
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            listFooterComponent={renderLoader}
+            onEndReached={LoadMoreItems}
+          />
+      </ContainerMain>
+      }
     </Container>
   );
 }
