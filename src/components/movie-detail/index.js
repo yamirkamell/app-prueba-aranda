@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { 
   Container, 
   ContainerMain, 
@@ -6,16 +7,19 @@ import {
   TitleComponent,
   ContainerMovie,
   TitleMovie,
-  ImageMovie 
+  ImageMovie,
+  ContainerVideo,
+  VideoComponent 
 } from './styled';
 
 const MovieDetail = ({navigation, route}) => {
   const data = route.params.data;
+  const video = useRef(null);
 
   return (
     <Container>
       <ContainerMain>
-        <ContainerHeader onClick={() => {navigation.goBack()}}>
+        <ContainerHeader onPress={() => {navigation.goBack()}}>
           <IconHeader name="chevron-back" size={24} color="#ed7d31" />
           <TitleComponent>back</TitleComponent>
         </ContainerHeader>
@@ -25,7 +29,18 @@ const MovieDetail = ({navigation, route}) => {
           source={{uri: data.image}}
           />
           <TitleMovie>Descripción: {data.description !== undefined ? data.description : 'Descripción tendencias'}</TitleMovie>
-      </ContainerMovie>
+        </ContainerMovie>
+        <ContainerVideo>
+          <VideoComponent
+            ref={video}
+            source={{
+              uri: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+            }}
+            useNativeControls
+            resizeMode="contain"
+            isLooping={true}
+          />
+        </ContainerVideo>
       </ContainerMain>
     </Container>
   );

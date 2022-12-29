@@ -27,15 +27,16 @@ const Movies = ({navigation}) => {
 
   const onPressMovieDetail = (item) => {
     navigation.navigate("MovieDetail", {data:item});
+    console.log('hello');
   }
 
   const renderItem = ({item}) => {
     return (
-      <ContainerMovie>
+      <ContainerMovie onPress={() => {onPressMovieDetail(item)}}>
         <TitleMovie>{item.title}</TitleMovie>
         <ImageMovie
         source={{uri: item.image}}
-        onClick={() => {onPressMovieDetail(item)}} />
+         />
       </ContainerMovie>
     )
   }

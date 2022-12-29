@@ -36,7 +36,7 @@ const TitleComponent = styled.Text`
   color: #ed7d31;
 `;
 
-const ContainerMovie = styled.View`
+const ContainerMovie = styled.Pressable`
   flex-direction: column; 
   background-color: #fff;
   width: 100%;

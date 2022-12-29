@@ -24,7 +24,7 @@ const MoviesServices = () => {
     if (search !== "" || search === null) {
       return;
     }
-    axios.get('https://imdb-api.com/en/API/MostPopularMovies/k_so83a40o')
+    axios.get('https://imdb-api.com/en/API/MostPopularMovies/k_3c9uucr3')
       .then((response) => {
         setMovies(response.data.items.slice(0, 10));
       })
@@ -39,7 +39,7 @@ const MoviesServices = () => {
     }
     setMovies([]);
     setLoading(true);
-    axios.get(`https://imdb-api.com/en/API/SearchMovie/k_so83a40o/${search}`)
+    axios.get(`https://imdb-api.com/en/API/SearchMovie/k_3c9uucr3/${search}`)
     .then((response) => {
       console.log(response.data);
       setMoviesFilter([...moviesFilter, ...response.data.results.slice(currentInitial, currentFinish)]);

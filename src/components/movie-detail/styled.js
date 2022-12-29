@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { Ionicons } from '@expo/vector-icons'; 
+import { Video } from 'expo-av';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -14,19 +15,12 @@ const ContainerMain = styled.View`
   height: 100%; 
 `;
 
-const ContainerHeader = styled.View`
+const ContainerHeader = styled.Pressable`
   flex-direction: row;
   align-items: center;
   align-self: flex-start;
   width: 80px;
   margin: 20px;
-`;
-
-const ContainerTitle = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin: 20px 0 10px 0;
-
 `;
 
 const IconHeader = styled(Ionicons)`
@@ -48,11 +42,6 @@ const ContainerMovie = styled.View`
   margin-top: 10px;
 `;
 
-const FlatListContent = styled.FlatList`
-  width: 90%;
-  margin-bottom: 20px;
-`;
-
 const TitleMovie = styled.Text`
   color: #ed7d31;
 `;
@@ -66,16 +55,27 @@ const ImageMovie = styled.Image`
   border-radius: 10px;
 `;
 
+const ContainerVideo = styled.View`
+  width: 100%;
+  align-items: center;
+`;
+
+const VideoComponent = styled(Video)`
+  width: 90%;
+  margin-top: 10px;
+  height: 200px;
+  border-radius: 10px;
+`;
+
 export {
   Container,
   ContainerMain,
   ContainerHeader,
-  ContainerTitle,
   IconHeader,
   TitleComponent,
   ContainerMovie,
-  FlatListContent,
   TitleMovie,
-  ImageMovie
+  ImageMovie,
+  ContainerVideo,
+  VideoComponent
 }
-
