@@ -5,9 +5,10 @@ const Container = styled.SafeAreaView`
   flex: 1;
 `;
 
-const ContainerScrollView = styled.ScrollView`
+const ContainerMain = styled.View`
   flex: 1;
   flex-direction: column;
+  align-items: center;
   background-color: #fff;
   width: 100%;
   height: 100%; 
@@ -35,13 +36,10 @@ const TitleComponent = styled.Text`
   color: #ed7d31;
 `;
 
-const ContainerMovie = styled.View`
-  flex-direction: row; 
-  justify-content: space-around; 
-  align-items: center;
+const ContainerMovie = styled.Pressable`
+  flex-direction: column; 
   background-color: #fff;
-  width: 90%;
-  height: 70px; 
+  width: 100%;
   border-radius: 20px;
   border-width: 1px;
   border-color: #ed7d31;
@@ -49,13 +47,33 @@ const ContainerMovie = styled.View`
   margin-top: 10px;
 `;
 
+const FlatListContent = styled.FlatList`
+  width: 90%;
+  margin-bottom: 20px;
+`;
+
+const TitleMovie = styled.Text`
+  color: #ed7d31;
+`;
+
+const ImageMovie = styled.Image`
+  width: 130px;
+  height: 180px; 
+  align-self: center;
+  margin-top: 10px;
+  border-radius: 10px;
+`;
+
 export {
   Container,
-  ContainerScrollView,
+  ContainerMain,
   ContainerHeader,
   ContainerTitle,
   IconHeader,
   TitleComponent,
-  ContainerMovie
+  ContainerMovie,
+  FlatListContent,
+  TitleMovie,
+  ImageMovie
 }
 
